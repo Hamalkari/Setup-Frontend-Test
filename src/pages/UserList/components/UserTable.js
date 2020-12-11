@@ -154,6 +154,18 @@ function UserTable(props) {
     }
   };
 
+  const handleFilterStatusChange = (el) => {
+    setFilterStatus(el.target.value);
+
+    setCurrentPage(1);
+  };
+
+  const handleFilterSearchChange = (el) => {
+    setFilterSearch(el.target.value);
+
+    setCurrentPage(1);
+  };
+
   const usersTableData = useMemo(() => {
     const filteredUsers = users.filter(
       (user) =>
@@ -176,8 +188,8 @@ function UserTable(props) {
         <UserTableFilters
           filterStatus={filterStatus}
           filterSearch={filterSearch}
-          onFilterStatusChange={(el) => setFilterStatus(el.target.value)}
-          onFilterSearchChange={(el) => setFilterSearch(el.target.value)}
+          onFilterStatusChange={handleFilterStatusChange}
+          onFilterSearchChange={handleFilterSearchChange}
         />
       </div>
 
