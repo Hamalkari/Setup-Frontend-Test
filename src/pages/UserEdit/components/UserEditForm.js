@@ -3,12 +3,15 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
 import { now } from "moment";
+import { useHistory, useParams } from "react-router-dom";
 
 import { FormGroup, FormLabel, Button } from "react-bootstrap";
-import UserService from "../../../servicees/user.service";
+import UserService from "../../../services/user.service";
 
-function UserEditForm({ id, history }) {
-  const [user, setUser] = useState(UserService.getOne(id));
+function UserEditForm(props) {
+  const { id } = useParams();
+  const history = useHistory();
+  const [user, setUser] = useState(() => UserService.getOne(id));
 
   const formSchema = Yup.object().shape({
     email: Yup.string()
@@ -28,7 +31,7 @@ function UserEditForm({ id, history }) {
     status: user.status,
   };
 
-  const editUser = (values) => {
+  const handleSubmit = (values) => {
     const editUser = {
       ...values,
       updatedAt: now(),
@@ -40,18 +43,18 @@ function UserEditForm({ id, history }) {
 
     toast.success("Пользователь успешно изменен!");
 
-    history.push("/");
+    history.push("/users");
   };
 
-  const cancelEditUser = () => {
-    history.push("/");
+  const handleCancelEdit = () => {
+    history.push("/users");
   };
 
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={formSchema}
-      onSubmit={editUser}
+      onSubmit={handleSubmit}
     >
       {(formik) => {
         const { errors, touched, isValid } = formik;
@@ -134,7 +137,9 @@ function UserEditForm({ id, history }) {
                 Изменить
               </Button>
 
-              <Button variant="danger" onClick={cancelEditUser}></Button>
+              <Button variant="danger" onClick={handleCancelEdit}>
+                Отменить
+              </Button>
             </div>
           </Form>
         );

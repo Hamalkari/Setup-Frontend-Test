@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import { now } from "moment";
 import { FormGroup, FormLabel, Button } from "react-bootstrap";
 
-import UserService from "../../../servicees/user.service";
+import UserService from "../../../services/user.service";
 
 import * as Yup from "yup";
 
@@ -27,7 +27,7 @@ function UserCreateForm(props) {
     status: "client",
   };
 
-  const createUser = (values) => {
+  const handleSubmit = (values) => {
     const user = {
       id: uuidv4(),
       ...values,
@@ -44,7 +44,7 @@ function UserCreateForm(props) {
     <Formik
       initialValues={initialValues}
       validationSchema={formSchema}
-      onSubmit={createUser}
+      onSubmit={handleSubmit}
     >
       {(formik) => {
         const { errors, touched, isValid, dirty } = formik;
