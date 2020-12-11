@@ -8,25 +8,25 @@ import UserList from "../pages/UserList";
 import UserEdit from "../pages/UserEdit";
 import UserCreate from "../pages/UserCreate";
 
-function Header(props) {
-  const menuItems = [
-    {
-      to: "/",
-      title: "Главная",
-    },
-    {
-      to: "/users",
-      title: "Пользователи",
-    },
-    {
-      to: "/users/create",
-      title: "Создать пользователя",
-    },
-  ];
+const menuItems = [
+  {
+    to: "/",
+    title: "Главная",
+  },
+  {
+    to: "/users",
+    title: "Пользователи",
+  },
+  {
+    to: "/users/create",
+    title: "Создать пользователя",
+  },
+];
 
+function Header(props) {
   return (
     <div>
-      <Navbar expand="lg" bg="primary" variant="dark">
+      <Navbar expand="sm" bg="primary" variant="dark">
         <Navbar.Toggle aria-controls="navbarNav" />
 
         <Container>
