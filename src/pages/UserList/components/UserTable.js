@@ -139,7 +139,7 @@ function UserTable(props) {
   };
 
   const handleChangePerPage = (el) => {
-    setPerPage(el.target.value);
+    setPerPage(Number(el.target.value));
 
     setCurrentPage(1);
   };
@@ -192,9 +192,9 @@ function UserTable(props) {
                 onChange={handleChangePerPage}
                 className="form-control d-inline-block w-auto"
               >
-                <option value={10}>10</option>
-                <option value={25}>25</option>
-                <option value={50}>50</option>
+                <option value="10">10</option>
+                <option value="20">25</option>
+                <option value="50">50</option>
               </select>{" "}
               пользователей
             </label>
